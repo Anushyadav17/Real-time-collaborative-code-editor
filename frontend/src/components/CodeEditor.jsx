@@ -6,15 +6,12 @@ import Output from "./Output";
 import { updateFile } from "../services/operation/fileAPI";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import user from "../../../backend/model/user";
 
 const CodeEditor = ({ projectId, socketRef, codeRef, value, setValue, currentFile, setCurrentFile, files }) => {
   const editorRef = useRef();
   const [language, setLanguage] = useState("java");
 
   const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
-  const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
-
   const [loading, setLoading] = useState(false);
 
   const onMount = (editor) => {
@@ -29,7 +26,7 @@ const CodeEditor = ({ projectId, socketRef, codeRef, value, setValue, currentFil
 
   const onChange = (newValue) => {
     setValue(newValue);
-    socketRef.current.emit("update code", { projectId, code: newValue, userId: user._id });
+    socketRef.current.emit("update code", { projectId, code: newValue });
   };
 
   const handleOnSave = async() => {
@@ -67,15 +64,11 @@ const CodeEditor = ({ projectId, socketRef, codeRef, value, setValue, currentFil
     setValue(codeRef.current);
     if (socketRef.current) {
       socketRef.current.on("syncing the code",( { code })  => {
-        console.log("from")
         setValue(code);
       });
 
-      socketRef.current.on("on code change", ({ code, userId }) => {
-        if(userId !== user._id) {
-          console.log("reverd code", code);
-          setValue(code);
-        }
+      socketRef.current.on("on code change", ({ code }) => {
+        setValue(code);
       });
     }
 

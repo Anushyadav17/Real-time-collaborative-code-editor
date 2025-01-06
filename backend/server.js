@@ -111,7 +111,7 @@ io.on("connection", (socket) => {
   });
 
   // Handle code updates
-  socket.on("update code", ({ projectId, code, userId }) => {
+  socket.on("update code", ({ projectId, code }) => {
    // console.log("Updating code for project:", projectId);
     //console.log("New code:", code);
 
@@ -119,7 +119,7 @@ io.on("connection", (socket) => {
     roomID_to_Code_Map[projectId] = code;
 
     // Broadcast the updated code to all clients in the room
-    io.to(projectId).emit("on code change", { code: roomID_to_Code_Map[projectId], userId });
+    io.to(projectId).emit("on code change", { code: roomID_to_Code_Map[projectId] });
 
    // console.log("Updated roomID_to_Code_Map:", roomID_to_Code_Map);
   });
