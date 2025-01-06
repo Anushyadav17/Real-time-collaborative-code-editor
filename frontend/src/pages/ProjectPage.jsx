@@ -6,7 +6,7 @@ import Sidebar from "../components/Sidebar";
 import CodeEditor from "../components/CodeEditor";
 import { createFile, deleteFile, getFiles } from "../services/operation/fileAPI";
 
-const EndPoint = "http://localhost:4000";
+const EndPoint = "/";
 
 const ProjectPage = () => {
   const navigate = useNavigate();
