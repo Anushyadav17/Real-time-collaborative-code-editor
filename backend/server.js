@@ -12,9 +12,8 @@ const fileRoute = require("./routes/Files")
 const app = express();
 require("dotenv").config();
 
-const __dirname = path.resolve();
-
 const PORT = process.env.PORT || 4000;
+//const __dirname = path.resolve();
 
 // Connect to the database
 database.connect();
@@ -36,18 +35,19 @@ app.use("/api/v1/ai", aiRoutes);
 app.use("/api/v1/file", fileRoute);
 
 // Default route
-app.use("/", (req, res) => {
-  res.send("<h1>Server is Running</h1>");
-});
+// app.use("/", (req, res) => {
+//   res.send("<h1>Server is Running</h1>");
+// });
 
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "/frontend/dist")));
+	app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 	// react app
 	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+		res.sendFile(path.resolve(__dirname, "..", "frontend", "dist", "index.html"));
 	});
 }
+
 
 // Start the server
 const server = app.listen(PORT, () => {
