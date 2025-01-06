@@ -4,9 +4,7 @@ import LanguageSelector from "./LanguageSelector";
 // import { CODE_SNIPPETS } from "../constants";
 import Output from "./Output";
 import { updateFile } from "../services/operation/fileAPI";
-import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import user from "../../../backend/model/user";
 
 const CodeEditor = ({ projectId, socketRef, codeRef, value, setValue, currentFile, setCurrentFile, files }) => {
   const editorRef = useRef();
