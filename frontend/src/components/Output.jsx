@@ -37,7 +37,7 @@ const Output = ({ editorRef, language }) => {
     }
     setIsLoading(true);
     try {
-      const res = await apiConnector("POST", "http://localhost:4000/api/v1/ai/ai-chat", { prompt });
+      const res = await apiConnector("POST", "/api/v1/ai/ai-chat", { prompt });
       //console.log(res);
       if (res?.data?.response) {
         setAiResponse(res.data.response);
