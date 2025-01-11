@@ -12,7 +12,7 @@ A real-time collaborative code editor where users can create, edit, and share co
 
 ## Features
 
-- **Real-Time Collaboration:** Multiple users can edit code simultaneously and see live updates.
+- **Real-Time Collaboration:** Multiple user`s can edit code simultaneously and see live updates.
 - **AI Assistance:** Integrated AI support to provide suggestions and assistance while coding.
 - **Code Sharing:** Users can easily share their code with others in real-time.
 - **File Management:** Files are created and stored securely in MongoDB.
